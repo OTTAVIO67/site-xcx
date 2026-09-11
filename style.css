@@ -1,0 +1,892 @@
+/* =========================================
+   HYPERPOP WEBSITE
+   Projeto escolar - HTML + CSS
+   ========================================= */
+
+
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: #ffffff;
+    font-family: "Space Grotesk", sans-serif;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: #ff00aa;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(8, 8, 8, 0.8);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navbar {
+    max-width: 1250px;
+    margin: auto;
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: #ff00aa;
+}
+
+.menu {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+.menu a {
+    color: #bdbdbd;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    color: #ff00aa;
+    text-shadow: 0 0 15px #ff00aa;
+}
+
+
+/* =========================================
+   HERO
+   ========================================= */
+
+.hero {
+    min-height: 100vh;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    max-width: 1250px;
+    margin: auto;
+    padding: 120px 30px 80px;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+    width: 500px;
+    height: 500px;
+
+    background: #ff009d;
+    filter: blur(180px);
+    opacity: 0.18;
+
+    top: 100px;
+    left: -200px;
+
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.tag {
+    color: #00ffff;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(75px, 13vw, 180px);
+    line-height: 0.8;
+    letter-spacing: -10px;
+
+    text-shadow:
+        5px 5px 0 #ff009d,
+        10px 10px 0 rgba(0, 255, 255, 0.4);
+}
+
+.hero h1 span {
+    color: #00ffff;
+
+    text-shadow:
+        5px 5px 0 #ff00aa,
+        10px 10px 0 rgba(255, 255, 255, 0.2);
+}
+
+.hero-text {
+    max-width: 480px;
+
+    color: #a9a9a9;
+    font-size: 18px;
+    line-height: 1.7;
+
+    margin: 45px 0 35px;
+}
+
+.button {
+    display: inline-block;
+
+    padding: 16px 25px;
+
+    border: 1px solid #ff00aa;
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+
+    transition: 0.3s;
+
+    box-shadow: 0 0 20px rgba(255, 0, 170, 0.15);
+}
+
+.button:hover {
+    background: #ff00aa;
+    color: white;
+
+    box-shadow:
+        0 0 20px #ff00aa,
+        0 0 50px rgba(255, 0, 170, 0.5);
+
+    transform: translateY(-3px);
+}
+
+
+/* CÍRCULO */
+
+.hero-circle {
+    width: 390px;
+    height: 390px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(0, 255, 255, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    animation: floating 5s ease-in-out infinite;
+
+    box-shadow:
+        0 0 40px rgba(0, 255, 255, 0.15),
+        inset 0 0 50px rgba(255, 0, 170, 0.1);
+}
+
+.hero-circle::before {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    border: 1px dashed #ff00aa;
+    border-radius: 50%;
+
+    animation: rotate 15s linear infinite;
+}
+
+.circle-text {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #00ffff;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+
+    animation: rotate 20s linear infinite;
+}
+
+.circle-center {
+    font-size: 70px;
+    color: #ff00aa;
+
+    text-shadow:
+        0 0 10px #ff00aa,
+        0 0 30px #ff00aa,
+        0 0 60px #ff00aa;
+}
+
+
+/* =========================================
+   SECTIONS
+   ========================================= */
+
+.section {
+    max-width: 1250px;
+    margin: auto;
+    padding: 130px 30px;
+}
+
+.section-title {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+
+    margin-bottom: 70px;
+}
+
+.section-title > span {
+    color: #ff00aa;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 13px;
+
+    padding-top: 10px;
+}
+
+.section-title h2 {
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(35px, 5vw, 65px);
+    line-height: 1;
+
+    letter-spacing: -2px;
+}
+
+.section-title strong {
+    color: #00ffff;
+}
+
+
+/* =========================================
+   ABOUT
+   ========================================= */
+
+.about {
+    border-top: 1px solid #171717;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+}
+
+.about-text p {
+    color: #aaa;
+
+    font-size: 17px;
+    line-height: 1.8;
+
+    margin-bottom: 25px;
+}
+
+.about-text p:first-child {
+    color: white;
+    font-size: 21px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+
+    background: #202020;
+}
+
+.stat {
+    min-height: 160px;
+
+    padding: 30px;
+
+    background: #0b0b0b;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    transition: 0.3s;
+}
+
+.stat:hover {
+    background: #111;
+    box-shadow: inset 0 0 30px rgba(255, 0, 170, 0.1);
+}
+
+.stat strong {
+    color: #ff00aa;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 30px;
+}
+
+.stat span {
+    color: #999;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   ARTISTAS
+   ========================================= */
+
+.artists {
+    border-top: 1px solid #171717;
+}
+
+.artist-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.artist-card {
+    min-height: 480px;
+
+    padding: 35px;
+
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid #222;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    transition: 0.4s;
+}
+
+.artist-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    top: -130px;
+    right: -100px;
+
+    filter: blur(80px);
+
+    opacity: 0.5;
+
+    transition: 0.4s;
+}
+
+.artist-card:hover {
+    transform: translateY(-8px);
+    border-color: #555;
+}
+
+.artist-card:hover::before {
+    opacity: 0.9;
+}
+
+.sophie {
+    background: linear-gradient(145deg, #12000c, #080808);
+}
+
+.sophie::before {
+    background: #ff0088;
+}
+
+.charli {
+    background: linear-gradient(145deg, #001215, #080808);
+}
+
+.charli::before {
+    background: #00ffff;
+}
+
+.ag {
+    background: linear-gradient(145deg, #100012, #080808);
+}
+
+.ag::before {
+    background: #8a00ff;
+}
+
+.hannah {
+    background: linear-gradient(145deg, #00100c, #080808);
+}
+
+.hannah::before {
+    background: #00ff88;
+}
+
+.artist-number {
+    position: absolute;
+    top: 25px;
+    left: 30px;
+
+    color: #555;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 12px;
+}
+
+.artist-icon {
+    position: absolute;
+
+    top: 50px;
+    right: 50px;
+
+    width: 130px;
+    height: 130px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 35px;
+    font-weight: 800;
+
+    color: white;
+
+    background: rgba(255, 255, 255, 0.02);
+
+    box-shadow:
+        0 0 40px rgba(255, 255, 255, 0.05),
+        inset 0 0 30px rgba(255, 255, 255, 0.03);
+}
+
+.artist-info {
+    position: relative;
+    z-index: 2;
+}
+
+.artist-role {
+    color: #777;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+.artist-info h3 {
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(25px, 4vw, 40px);
+
+    margin-bottom: 20px;
+}
+
+.artist-info > p {
+    color: #999;
+
+    font-size: 14px;
+    line-height: 1.7;
+
+    max-width: 500px;
+}
+
+.album {
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    border-left: 2px solid #ff00aa;
+    padding-left: 15px;
+}
+
+.album span {
+    color: #666;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.album strong {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   FEATURES
+   ========================================= */
+
+.features {
+    border-top: 1px solid #171717;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+
+    background: #222;
+}
+
+.feature {
+    background: #0b0b0b;
+
+    padding: 35px;
+
+    min-height: 280px;
+
+    transition: 0.3s;
+}
+
+.feature:hover {
+    background: #111;
+}
+
+.feature-symbol {
+    color: #ff00aa;
+
+    font-size: 35px;
+
+    margin-bottom: 50px;
+}
+
+.feature h3 {
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 14px;
+    letter-spacing: 1px;
+
+    margin-bottom: 15px;
+}
+
+.feature p {
+    color: #777;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   LEGADO
+   ========================================= */
+
+.legacy {
+    min-height: 700px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 100px 30px;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 70% 50%,
+            rgba(255, 0, 170, 0.2),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 30% 50%,
+            rgba(0, 255, 255, 0.15),
+            transparent 30%
+        ),
+        #080808;
+}
+
+.legacy::before {
+    content: "HYPERPOP";
+
+    position: absolute;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 20vw;
+    font-weight: 800;
+
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+
+    white-space: nowrap;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 0;
+}
+
+.legacy-content {
+    max-width: 1250px;
+    width: 100%;
+    margin: auto;
+
+    position: relative;
+    z-index: 2;
+}
+
+.legacy h2 {
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(45px, 7vw, 90px);
+    line-height: 0.95;
+
+    margin-bottom: 35px;
+}
+
+.legacy h2 span {
+    color: #ff00aa;
+
+    text-shadow:
+        0 0 20px rgba(255, 0, 170, 0.5);
+}
+
+.legacy-content > p:not(.tag) {
+    max-width: 600px;
+
+    color: #999;
+
+    font-size: 17px;
+    line-height: 1.7;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+footer {
+    border-top: 1px solid #222;
+
+    padding: 50px 30px;
+
+    text-align: center;
+
+    background: #050505;
+}
+
+.footer-logo {
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 25px;
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+}
+
+.footer-logo span {
+    color: #ff00aa;
+}
+
+footer p {
+    color: #666;
+    font-size: 12px;
+}
+
+.copyright {
+    margin-top: 10px;
+    color: #333;
+}
+
+
+/* =========================================
+   ANIMAÇÕES
+   ========================================= */
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .menu {
+        gap: 15px;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 80px;
+    }
+
+    .hero-circle {
+        width: 280px;
+        height: 280px;
+        align-self: center;
+    }
+
+    .hero-circle::before {
+        width: 200px;
+        height: 200px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .artist-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 0 18px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .hero {
+        padding: 120px 20px 70px;
+    }
+
+    .hero h1 {
+        font-size: 70px;
+        letter-spacing: -5px;
+    }
+
+    .hero-text {
+        font-size: 15px;
+    }
+
+    .section {
+        padding: 90px 20px;
+    }
+
+    .section-title {
+        gap: 15px;
+        margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+        font-size: 35px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .artist-card {
+        min-height: 500px;
+        padding: 25px;
+    }
+
+    .artist-icon {
+        width: 100px;
+        height: 100px;
+
+        top: 45px;
+        right: 30px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .legacy {
+        min-height: 600px;
+        padding: 80px 20px;
+    }
+
+    .legacy h2 {
+        font-size: 45px;
+    }
+}
