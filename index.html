@@ -1,1350 +1,172 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>HYPERPOP — Som, Estética e Cultura</title>
-
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Poppins:wght@300;400;600;700&display=swap');
-
-:root {
-    --rosa: #ff1493;
-    --roxo: #8a2be2;
-    --azul: #00e5ff;
-    --verde: #b6ff00;
-    --amarelo: #fff000;
-    --fundo: #08000f;
-    --card: rgba(255,255,255,0.08);
-    --texto: #ffffff;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background:
-        radial-gradient(circle at 10% 10%, #500078 0%, transparent 25%),
-        radial-gradient(circle at 90% 20%, #006b75 0%, transparent 25%),
-        radial-gradient(circle at 50% 100%, #57004f 0%, transparent 30%),
-        var(--fundo);
-    color: var(--texto);
-    font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
-    transition: 0.5s;
-}
-
-/* ================= HEADER ================= */
-
-header {
-    min-height: 95vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 40px 20px;
-    position: relative;
-    overflow: hidden;
-}
-
-header::before,
-header::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(10px);
-    animation: flutuar 6s infinite alternate ease-in-out;
-}
-
-header::before {
-    width: 350px;
-    height: 350px;
-    background: var(--rosa);
-    opacity: .35;
-    top: -100px;
-    left: -100px;
-}
-
-header::after {
-    width: 400px;
-    height: 400px;
-    background: var(--azul);
-    opacity: .25;
-    right: -120px;
-    bottom: -120px;
-}
-
-@keyframes flutuar {
-    from {
-        transform: translate(0,0) scale(1);
-    }
-
-    to {
-        transform: translate(50px,-30px) scale(1.2);
-    }
-}
-
-.hero {
-    position: relative;
-    z-index: 2;
-}
-
-.hero h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(3rem, 10vw, 8rem);
-    font-weight: 900;
-    letter-spacing: -5px;
-
-    background: linear-gradient(
-        90deg,
-        var(--rosa),
-        var(--azul),
-        var(--verde),
-        var(--rosa)
-    );
-
-    background-size: 300%;
-    -webkit-background-clip: text;
-    color: transparent;
-
-    animation: neonText 5s infinite linear;
-}
-
-@keyframes neonText {
-    0% { background-position: 0%; }
-    100% { background-position: 300%; }
-}
-
-.hero p {
-    max-width: 750px;
-    margin: 25px auto;
-    font-size: 1.2rem;
-    color: #ddd;
-}
-
-.glitch {
-    display: inline-block;
-    font-family: monospace;
-    color: var(--azul);
-    letter-spacing: 5px;
-}
-
-/* ================= BOTÕES ================= */
-
-.buttons {
-    margin-top: 35px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-button {
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-}
-
-.neon-button {
-    padding: 13px 22px;
-    border-radius: 30px;
-    color: white;
-    background: linear-gradient(90deg, var(--rosa), var(--roxo));
-    font-weight: 700;
-    box-shadow: 0 0 20px rgba(255,20,147,.5);
-    transition: .3s;
-}
-
-.neon-button:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 0 35px var(--rosa);
-}
-
-/* ================= CONTAINER ================= */
-
-.container {
-    width: min(1200px, 92%);
-    margin: auto;
-}
-
-section {
-    padding: 90px 0;
-}
-
-.section-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-
-    background: linear-gradient(
-        90deg,
-        var(--azul),
-        var(--rosa)
-    );
-
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.section-subtitle {
-    color: #aaa;
-    margin-bottom: 45px;
-}
-
-/* ================= INTRO ================= */
-
-.intro {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-
-.text-box {
-    background: var(--card);
-    padding: 30px;
-    border-radius: 25px;
-    border: 1px solid rgba(255,255,255,.12);
-    backdrop-filter: blur(15px);
-    transition: .3s;
-}
-
-.text-box:hover {
-    transform: translateY(-8px);
-    border-color: var(--azul);
-    box-shadow: 0 0 30px rgba(0,229,255,.15);
-}
-
-.text-box h3 {
-    color: var(--rosa);
-    margin-bottom: 15px;
-    font-size: 1.4rem;
-}
-
-.text-box p {
-    line-height: 1.8;
-    color: #ddd;
-}
-
-/* ================= ARTISTAS ================= */
-
-.artist-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 35px;
-}
-
-.artist-filter {
-    padding: 10px 18px;
-    border-radius: 20px;
-    background: rgba(255,255,255,.08);
-    color: white;
-    border: 1px solid rgba(255,255,255,.15);
-    transition: .3s;
-}
-
-.artist-filter:hover,
-.artist-filter.active {
-    background: var(--rosa);
-    box-shadow: 0 0 20px var(--rosa);
-}
-
-/* ================= GALERIA ================= */
-
-/*
-   4 imagens por linha
-   2 linhas
-   Total = 8 imagens
-*/
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-}
-
-.image-card {
-    height: 240px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 18px;
-    cursor: pointer;
-    background: #16001d;
-    border: 1px solid rgba(255,255,255,.1);
-    transition: .4s;
-}
-
-.image-card:hover {
-    transform: translateY(-8px) rotate(-1deg);
-    box-shadow:
-        0 0 20px var(--rosa),
-        0 0 50px rgba(0,229,255,.25);
-}
-
-.image-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: .5s;
-}
-
-.image-card:hover img {
-    transform: scale(1.12);
-    filter: saturate(1.5);
-}
-
-.image-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    padding: 18px;
-
-    background: linear-gradient(
-        transparent,
-        rgba(0,0,0,.9)
-    );
-}
-
-.image-info h3 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1rem;
-}
-
-.image-info p {
-    font-size: .8rem;
-    color: #ccc;
-}
-
-/* ================= ARTISTAS ================= */
-
-.artist-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-}
-
-.artist {
-    padding: 30px;
-    border-radius: 25px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,20,147,.13),
-            rgba(0,229,255,.08)
-        );
-
-    border: 1px solid rgba(255,255,255,.1);
-
-    transition: .3s;
-}
-
-.artist:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 30px rgba(255,20,147,.2);
-}
-
-.artist h3 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--azul);
-    margin-bottom: 12px;
-}
-
-.artist p {
-    line-height: 1.7;
-    color: #ddd;
-}
-
-/* ================= ÁLBUNS ================= */
-
-.album-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-
-.album {
-    padding: 20px;
-    border-radius: 20px;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.1);
-    transition: .3s;
-}
-
-.album:hover {
-    transform: translateY(-8px);
-    background: rgba(255,20,147,.1);
-}
-
-.album h3 {
-    color: var(--verde);
-    font-family: 'Orbitron', sans-serif;
-    margin-bottom: 8px;
-}
-
-.album span {
-    font-size: .8rem;
-    color: var(--azul);
-}
-
-.album p {
-    margin-top: 12px;
-    color: #ccc;
-    line-height: 1.6;
-}
-
-/* ================= CLIPES ================= */
-
-.clips {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.clip {
-    background: var(--card);
-    border-radius: 20px;
-    padding: 25px;
-    border: 1px solid rgba(255,255,255,.1);
-}
-
-.clip h3 {
-    color: var(--rosa);
-    margin-bottom: 10px;
-}
-
-.clip p {
-    color: #ccc;
-    line-height: 1.6;
-}
-
-/* ================= IMPACTO ================= */
-
-.impact {
-    padding: 40px;
-    border-radius: 30px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,20,147,.15),
-            rgba(138,43,226,.15),
-            rgba(0,229,255,.1)
-        );
-
-    border: 1px solid rgba(255,255,255,.15);
-}
-
-.impact p {
-    font-size: 1.1rem;
-    line-height: 1.9;
-    color: #ddd;
-}
-
-/* ================= CORES ================= */
-
-.colors {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 30px 0;
-}
-
-.color {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: 3px solid white;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.color:hover {
-    transform: scale(1.2);
-}
-
-/* ================= MODAL ================= */
-
-.modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.85);
-    backdrop-filter: blur(15px);
-
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-    z-index: 999;
-    padding: 30px;
-}
-
-.modal.active {
-    display: flex;
-}
-
-.modal-content {
-    max-width: 900px;
-    width: 100%;
-    text-align: center;
-}
-
-.modal img {
-    max-width: 100%;
-    max-height: 75vh;
-    border-radius: 20px;
-    box-shadow:
-        0 0 30px var(--rosa),
-        0 0 70px var(--azul);
-}
-
-.close {
-    position: absolute;
-    top: 25px;
-    right: 35px;
-
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
-}
-
-#modalTitle {
-    margin-top: 20px;
-    font-family: 'Orbitron', sans-serif;
-    color: var(--azul);
-}
-
-/* ================= FOOTER ================= */
-
-footer {
-    padding: 60px 20px;
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,.1);
-}
-
-footer h2 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--rosa);
-}
-
-footer p {
-    color: #777;
-    margin-top: 10px;
-}
-
-/* ================= RESPONSIVO ================= */
-
-@media(max-width: 900px) {
-
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .album-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .artist-grid,
-    .intro {
-        grid-template-columns: 1fr;
-    }
-
-    .clips {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media(max-width: 550px) {
-
-    .gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .album-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .image-card {
-        height: 260px;
-    }
-
-    .hero h1 {
-        letter-spacing: -2px;
-    }
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- ================= HERO ================= -->
-
-<header>
-
-<div class="hero">
-
-    <div class="glitch">
-        DIGITAL POP / PC MUSIC / INTERNET CULTURE
-    </div>
-
-    <h1>HYPERPOP</h1>
-
-    <p>
-        Um universo musical onde o pop é exagerado,
-        artificial, colorido, emocional e completamente digital.
-    </p>
-
-    <div class="buttons">
-        <a href="#historia">
-            <button class="neon-button">EXPLORAR</button>
-        </a>
-
-        <a href="#artistas">
-            <button class="neon-button">ARTISTAS</button>
-        </a>
-
-        <a href="#galeria">
-            <button class="neon-button">GALERIA</button>
-        </a>
-    </div>
-
-</div>
-
-</header>
-
-
-<!-- ================= HISTÓRIA ================= -->
-
-<section id="historia">
-
-<div class="container">
-
-<h2 class="section-title">O que é Hyperpop?</h2>
-
-<p class="section-subtitle">
-POP + ELETRÔNICA + INTERNET + EXAGERO
-</p>
-
-<div class="intro">
-
-<div class="text-box">
-
-<h3>Uma estética maximalista</h3>
-
-<p>
-O hyperpop pode ser entendido menos como uma fórmula rígida
-e mais como uma abordagem exagerada da música pop.
-Vocais processados, sintetizadores brilhantes, graves
-distorcidos, mudanças bruscas e elementos de dance,
-hip-hop e música eletrônica aparecem frequentemente.
-</p>
-
-</div>
-
-
-<div class="text-box">
-
-<h3>PC Music</h3>
-
-<p>
-A gravadora e coletivo PC Music, fundado por A. G. Cook
-em Londres em 2013, foi fundamental para desenvolver
-uma estética que transformava o pop comercial em algo
-artificial, estranho, futurista e experimental.
-</p>
-
-</div>
-
-
-<div class="text-box">
-
-<h3>Internet</h3>
-
-<p>
-A cultura do SoundCloud, streaming, fóruns, Discord,
-TikTok e outras comunidades digitais ajudou o som a
-ultrapassar as fronteiras da cena underground.
-</p>
-
-</div>
-
-
-<div class="text-box">
-
-<h3>O visual também importa</h3>
-
-<p>
-No hyperpop, capas, videoclipes, moda, fotografia,
-tipografia e identidade digital fazem parte da música.
-Rosa neon, cromado, plástico, Y2K, CGI e estética
-publicitária aparecem constantemente.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= ARTISTAS ================= -->
-
-<section id="artistas">
-
-<div class="container">
-
-<h2 class="section-title">Artistas essenciais</h2>
-
-<p class="section-subtitle">
-Quatro nomes que ajudaram a construir o universo estético e musical.
-</p>
-
-
-<div class="artist-grid">
-
-
-<div class="artist">
-
-<h3>CHARLI XCX</h3>
-
-<p>
-Charli XCX levou muitas ideias da cena experimental
-para o pop de grande público. Projetos como
-<i>Pop 2</i>, <i>Charli</i> e <i>how i'm feeling now</i>
-exploraram colaborações, produção digital e estruturas
-menos convencionais. Sua relação com SOPHIE e A. G. Cook
-foi especialmente importante para a evolução do som.
-</p>
-
-</div>
-
-
-<div class="artist">
-
-<h3>SOPHIE XEON</h3>
-
-<p>
-SOPHIE transformou sons artificiais em instrumentos
-expressivos: plástico, metal, graves extremamente
-processados e vocais manipulados. Seu trabalho
-questionou ideias tradicionais sobre corpo, identidade,
-gênero e o que poderia ser considerado "pop".
-</p>
-
-</div>
-
-
-<div class="artist">
-
-<h3>A. G. COOK</h3>
-
-<p>
-Fundador da PC Music, A. G. Cook foi um dos principais
-arquitetos da estética. Seu trabalho como produtor,
-compositor e diretor criativo ajudou a conectar
-música eletrônica experimental, pop e cultura digital.
-</p>
-
-</div>
-
-
-<div class="artist">
-
-<h3>HANNAH DIAMOND</h3>
-
-<p>
-Hannah Diamond uniu música, fotografia e identidade
-visual de forma extremamente consistente. Suas imagens
-hiperpolidas e hiperfemininas ajudaram a estabelecer
-uma linguagem visual que posteriormente apareceria
-em diversos espaços do pop e da internet.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= GALERIA ================= -->
-
-<section id="galeria">
-
-<div class="container">
-
-<h2 class="section-title">Galeria Hyperpop</h2>
-
-<p class="section-subtitle">
-Clique em qualquer imagem para ampliar.
-</p>
-
-
-<div class="gallery">
-
-
-<!-- 1 -->
-
-<div class="image-card"
-data-artist="charli"
-onclick="openModal(this)">
-
-<img src="https://media.pitchfork.com/photos/6015cdadbe28cef3982ebcad/16%3A9/w_800%2Ch_450%2Cc_limit/Charli%2520XCX%2520and%2520Sophie.png">
-
-<div class="image-info">
-<h3>CHARLI XCX</h3>
-<p>Pop experimental</p>
-</div>
-
-</div>
-
-
-<!-- 2 -->
-
-<div class="image-card"
-data-artist="sophie"
-onclick="openModal(this)">
-
-<img src="https://media.pitchfork.com/photos/6015cdadbe28cef3982ebcad/16%3A9/w_800%2Ch_450%2Cc_limit/Charli%2520XCX%2520and%2520Sophie.png">
-
-<div class="image-info">
-<h3>SOPHIE</h3>
-<p>Experimental electronic pop</p>
-</div>
-
-</div>
-
-
-<!-- 3 -->
-
-<div class="image-card"
-data-artist="agcook"
-onclick="openModal(this)">
-
-<img src="https://images-prod.dazeddigital.com/640/azure/dazed-prod/1280/2/1282048.jpg">
-
-<div class="image-info">
-<h3>A. G. COOK</h3>
-<p>PC Music</p>
-</div>
-
-</div>
-
-
-<!-- 4 -->
-
-<div class="image-card"
-data-artist="hannah"
-onclick="openModal(this)">
-
-<img src="https://assets.vogue.com/photos/58915b5e8c64075803acfa9d/master/w_1642%2Ch_1642%2Cc_limit/pc-music-01.jpg">
-
-<div class="image-info">
-<h3>HANNAH DIAMOND</h3>
-<p>Visual pop</p>
-</div>
-
-</div>
-
-
-<!-- 5 -->
-
-<div class="image-card"
-data-artist="charli"
-onclick="openModal(this)">
-
-<img src="https://media.senscritique.com/media/000017453685/source_big/Pop_2_Mixtape_Street.jpg">
-
-<div class="image-info">
-<h3>POP 2</h3>
-<p>Charli XCX — 2017</p>
-</div>
-
-</div>
-
-
-<!-- 6 -->
-
-<div class="image-card"
-data-artist="sophie"
-onclick="openModal(this)">
-
-<img src="https://allnightflightrecords.com/cdn/shop/files/IMG_5577_1024x1024%402x.jpg?v=1718714464">
-
-<div class="image-info">
-<h3>OIL OF EVERY PEARL'S...</h3>
-<p>SOPHIE — 2018</p>
-</div>
-
-</div>
-
-
-<!-- 7 -->
-
-<div class="image-card"
-data-artist="hannah"
-onclick="openModal(this)">
-
-<img src="https://images.squarespace-cdn.com/content/v1/57e1946a197aea20e2a66814/1577014124602-8TWRAVY2ZKH6JUJYUI71/HD%2BALBUM%2BCOVER%2BFINAL_COLOURGRADED.jpg">
-
-<div class="image-info">
-<h3>REFLECTIONS</h3>
-<p>Hannah Diamond — 2019</p>
-</div>
-
-</div>
-
-
-<!-- 8 -->
-
-<div class="image-card"
-data-artist="hannah"
-onclick="openModal(this)">
-
-<img src="https://cdn.craft.cloud/3747bbfe-07db-499d-aa3d-b239ba21c062/assets/albums/HD_PERFECTPICTURE_SQUARE_webuse.jpg?fit=cover&quality=95&s=ivvu2Lg0eM-JXC_5TrOdFM31TPkAK7Ov0HWYH1k8Nc4&width=469">
-
-<div class="image-info">
-<h3>PERFECT PICTURE</h3>
-<p>Hannah Diamond — 2023</p>
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= FILTRO ================= -->
-
-<section>
-
-<div class="container">
-
-<h2 class="section-title">Explore por artista</h2>
-
-<div class="artist-buttons">
-
-<button class="artist-filter active"
-onclick="filterImages('all', this)">
-TODOS
-</button>
-
-<button class="artist-filter"
-onclick="filterImages('charli', this)">
-CHARLI XCX
-</button>
-
-<button class="artist-filter"
-onclick="filterImages('sophie', this)">
-SOPHIE
-</button>
-
-<button class="artist-filter"
-onclick="filterImages('agcook', this)">
-A. G. COOK
-</button>
-
-<button class="artist-filter"
-onclick="filterImages('hannah', this)">
-HANNAH DIAMOND
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= ALBUNS ================= -->
-
-<section>
-
-<div class="container">
-
-<h2 class="section-title">Álbuns e projetos</h2>
-
-<p class="section-subtitle">
-Alguns trabalhos fundamentais para entender a estética.
-</p>
-
-
-<div class="album-grid">
-
-
-<div class="album">
-
-<span>CHARLI XCX • 2017</span>
-
-<h3>POP 2</h3>
-
-<p>
-Mixtape marcada por colaborações e produção
-futurista. É um dos projetos mais associados
-à transformação do pop digital na segunda metade
-da década de 2010.
-</p>
-
-</div>
-
-
-<div class="album">
-
-<span>SOPHIE • 2018</span>
-
-<h3>OIL OF EVERY PEARL'S UN-INSIDES</h3>
-
-<p>
-Um dos trabalhos mais importantes do pop eletrônico
-experimental. O álbum mistura agressividade,
-vulnerabilidade, sintetizadores artificiais e
-reflexões sobre identidade.
-</p>
-
-</div>
-
-
-<div class="album">
-
-<span>A. G. COOK • 2020</span>
-
-<h3>7G</h3>
-
-<p>
-Projeto gigantesco que mostra diferentes lados
-da produção de A. G. Cook, passando por pop,
-eletrônica, guitarras e experimentação.
-</p>
-
-</div>
-
-
-<div class="album">
-
-<span>HANNAH DIAMOND • 2023</span>
-
-<h3>PERFECT PICTURE</h3>
-
-<p>
-Uma reflexão sobre imagem, perfeccionismo,
-autoimagem e a relação entre identidade
-e performance no ambiente digital.
-</p>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= CLIPES ================= -->
-
-<section>
-
-<div class="container">
-
-<h2 class="section-title">Videoclipes</h2>
-
-<p class="section-subtitle">
-No hyperpop, o videoclipe frequentemente funciona como extensão da música.
-</p>
-
-
-<div class="clips">
-
-
-<div class="clip">
-
-<h3>CHARLI XCX</h3>
-
-<p>
-Os trabalhos visuais de Charli exploram moda,
-internet, clubes, Y2K, futurismo e uma sensação
-de velocidade constante. A imagem deixa de ser
-apenas divulgação e passa a fazer parte da identidade
-musical.
-</p>
-
-</div>
-
-
-<div class="clip">
-
-<h3>SOPHIE — FACEShopping</h3>
-
-<p>
-O videoclipe trabalha com manipulação digital,
-rostos em 3D, distorção e artificialidade.
-A estética combina diretamente com a discussão
-da música sobre aparência, corpo e identidade.
-</p>
-
-</div>
-
-
-<div class="clip">
-
-<h3>SOPHIE — IT'S OKAY TO CRY</h3>
-
-<p>
-O vídeo marcou uma mudança importante na relação
-entre SOPHIE e sua própria imagem pública,
-utilizando paisagens digitais e uma estética
-surreal e extremamente luminosa.
-</p>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= IMPACTO ================= -->
-
-<section>
-
-<div class="container">
-
-<h2 class="section-title">Impacto cultural</h2>
-
-<div class="impact">
-
-<p>
-
-O impacto do hyperpop vai além de um gênero musical.
-A cena ajudou a tornar aceitáveis dentro do pop
-elementos que antes pareciam "errados": vocais
-artificiais, distorção extrema, sintetizadores
-plásticos, mudanças repentinas de ritmo, estética
-digital e referências explícitas à internet.
-
-<br><br>
-
-A influência também chegou à moda, fotografia,
-design gráfico, videoclipes e cultura LGBTQIA+.
-Durante a pandemia, comunidades digitais e plataformas
-como TikTok e SoundCloud ajudaram novas gerações
-a descobrir e transformar essas ideias.
-
-<br><br>
-
-Charli XCX posteriormente levou várias dessas
-linguagens para um público global. O fenômeno mostra
-como uma cena inicialmente pequena e ligada à cultura
-de internet pode modificar a linguagem do pop
-mainstream.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= CORES ================= -->
-
-<section>
-
-<div class="container" style="text-align:center">
-
-<h2 class="section-title">Mude a cor do site</h2>
-
-<p class="section-subtitle">
-Escolha sua estética hyperpop.
-</p>
-
-
-<div class="colors">
-
-<div class="color"
-style="background:#ff1493"
-onclick="changeColor('#ff1493','#00e5ff')">
-</div>
-
-<div class="color"
-style="background:#8a2be2"
-onclick="changeColor('#8a2be2','#ff1493')">
-</div>
-
-<div class="color"
-style="background:#00e5ff"
-onclick="changeColor('#00e5ff','#b6ff00')">
-</div>
-
-<div class="color"
-style="background:#b6ff00"
-onclick="changeColor('#b6ff00','#ff1493')">
-</div>
-
-<div class="color"
-style="background:#fff000"
-onclick="changeColor('#fff000','#8a2be2')">
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-<h2>HYPERPOP</h2>
-
-<p>
-Pop não precisa seguir as regras.
-</p>
-
-<p>
-Projeto educativo sobre música, estética e cultura digital.
-</p>
-
-</footer>
-
-
-<!-- ================= MODAL ================= -->
-
-<div class="modal" id="modal">
-
-<span class="close" onclick="closeModal()">×</span>
-
-<div class="modal-content">
-
-<img id="modalImage" src="">
-
-<h2 id="modalTitle"></h2>
-
-</div>
-
-</div>
-
-
-<script>
-
-/* ================= MODAL ================= */
-
-function openModal(card) {
-
-    const img = card.querySelector("img");
-
-    const title = card.querySelector("h3").innerText;
-
-    document.getElementById("modalImage").src = img.src;
-
-    document.getElementById("modalTitle").innerText = title;
-
-    document.getElementById("modal").classList.add("active");
-}
-
-
-function closeModal() {
-
-    document.getElementById("modal").classList.remove("active");
-
-}
-
-
-document.getElementById("modal").addEventListener("click", function(e) {
-
-    if(e.target === this) {
-        closeModal();
-    }
-
-});
-
-
-/* ================= FILTRO ================= */
-
-function filterImages(artist, button) {
-
-    const cards = document.querySelectorAll(".image-card");
-
-    const buttons = document.querySelectorAll(".artist-filter");
-
-    buttons.forEach(btn => btn.classList.remove("active"));
-
-    button.classList.add("active");
-
-    cards.forEach(card => {
-
-        if(artist === "all" ||
-           card.dataset.artist === artist) {
-
-            card.style.display = "block";
-
-        } else {
-
-            card.style.display = "none";
-
-        }
-
-    });
-
-}
-
-
-/* ================= CORES ================= */
-
-function changeColor(primary, secondary) {
-
-    document.documentElement.style.setProperty(
-        "--rosa",
-        primary
-    );
-
-    document.documentElement.style.setProperty(
-        "--azul",
-        secondary
-    );
-
-}
-
-
-/* ================= TECLADO ================= */
-
-document.addEventListener("keydown", function(e) {
-
-    if(e.key === "Escape") {
-        closeModal();
-    }
-
-});
-
-</script>
-
-</body>
-</html>
+<<body>
+
+    <!-- ================= HEADER ================= -->
+    <header>
+        <div class="hero">
+            <h1>HYPERPOP</h1>
+            <div class="glitch">[S0M_3ST3T1C4_CULTUR4]</div>
+            <p>A subversão máxima do pop: maximalismo, distorção, nostalgia da Web 2.0 e sintetizadores futuristas moldando a trilha sonora do caos digital.</p>
+            <div class="buttons">
+                <button class="neon-button">Conhecer o Som</button>
+                <button class="neon-button" style="background: linear-gradient(90deg, var(--azul), var(--roxo)); box-shadow: 0 0 20px rgba(0,229,255,.5);">Explorar Estética</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- ================= INTRO ================= -->
+        <section id="intro">
+            <h2 class="section-title">O que é Hyperpop?</h2>
+            <p class="section-subtitle">Uma colisão caótica entre o mainstream e o underground digital.</p>
+            
+            <div class="intro">
+                <div class="text-box">
+                    <h3>Sonoridade Exagerada</h3>
+                    <p>Vocais agudos saturados de Auto-Tune, batidas eletrônicas agressivas inspiradas no Eurodance, Nightcore, Glitch Core e sintetizadores distorcidos que desafiam os limites do pop tradicional.</p>
+                </div>
+                <div class="text-box">
+                    <h3>Identidade Visual Glitch</h3>
+                    <p>Uma estética visual que resgata a nostalgia dos anos 2000, misturando elementos do Y2K, computação gráfica primitiva, cores neon berrantes, animes e colagens caóticas da internet.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= GALERIA ================= -->
+        <section id="galeria">
+            <h2 class="section-title">Visual Glitch & Estética</h2>
+            <p class="section-subtitle">O retrato visual do maximalismo digital do gênero.</p>
+            
+            <div class="gallery">
+                <!-- Linha 1 (4 imagens) -->
+                <div class="image-card">
+                    <img src="https://unsplash.com" alt="Estética Cyberpunk Retro">
+                    <div class="image-info"><h3>Nostalgia Y2K</h3><p>Cultura Web 1.0</p></div>
+                </div>
+                <div class="image-card">
+                    <img src="https://unsplash.com" alt="Luzes Neon Distorcidas">
+                    <div class="image-info"><h3>Cores Neon</h3><p>Saturação Máxima</p></div>
+                </div>
+                <div class="image-card">
+                    <img src="https://unsplash.com" alt="Arte Abstrata Digital">
+                    <div class="image-info"><h3>Arte Glitch</h3><p>Texturas de Erro</p></div>
+                </div>
+                <div class="image-card">
+                    <img src="https://unsplash.com" alt="Degradê Líquido">
+                    <div class="image-info"><h3>Cultura Rave</h3><p>Futurismo Líquido</p></div>
+                </div>
+                <!-- Linha 2 (4 imagens) -->
+                <div class="image-card">
+                    <img src="https://unsplash.com" alt="Sintetizador e Luzes">
+                    <div class="image-info"><h3>PC Music</h3><p>A Era de Ouro</p></div>
+                </div>
+                <div class="image-card">
+                    <img src="https://unsplash.com" alt="Cultura Gamer">
+                    <div class="image-info"><h3>8-Bit / Chiptune</h3><p>Game Over Pop</p></div>
+                </div>
+                <div class="image-card">
+                    <img src="https://unsplash.com" alt="Moda Alternativa">
+                    <div class="image-info"><h3>Kidcore</h3><p>Plásticos & Brilho</p></div>
+                </div>
+                <div class="image-card">
+                    <img src="https://unsplash.com" alt="Caos Visual">
+                    <div class="image-info"><h3>Maximalismo</h3><p>Informação Visual</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ARTISTAS ================= -->
+        <section id="artistas">
+            <h2 class="section-title">Ícones do Movimento</h2>
+            <p class="section-subtitle">Pioneiros e mentes criativas que definiram as regras (e a quebra delas).</p>
+            
+            <div class="artist-buttons">
+                <button class="artist-filter active">Todos</button>
+                <button class="artist-filter">Pioneiros</button>
+                <button class="artist-filter">Nova Era</button>
+                <button class="artist-filter">Brasil</button>
+            </div>
+
+            <div class="artist-grid">
+                <div class="artist">
+                    <h3>SOPHIE</h3>
+                    <p>Produtora e DJ visionária que revolucionou a música pop eletrônica. Sintetizando texturas industriais, metálicas e plásticas, ela pavimentou o caminho de toda a fundação do Hyperpop mundial.</p>
+                </div>
+                <div class="artist">
+                    <h3>100 gecs</h3>
+                    <p>O duo formado por Dylan Brady e Laura Les explodiu a bolha do gênero ao misturar de forma caótica e genial elementos de Ska, Dubstep, Nu-Metal e Pop chiclete com guitarras pesadas.</p>
+                </div>
+                <div class="artist">
+                    <h3>Charli XCX</h3>
+                    <p>A rainha do pop underground que trouxe a vanguarda do movimento para as grandes massas através de parcerias com o selo PC Music e álbuns aclamados pela crítica como BRAT e Pop 2.</p>
+                </div>
+                <div class="artist">
+                    <h3>A. G. Cook</h3>
+                    <p>Fundador da lendária gravadora PC Music, ele foi o cérebro que arquitetou a desconstrução e a ironização da música pop comercial, transformando-a em pura arte hiper-estimulante.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ÁLBUNS ================= -->
+        <section id="albuns">
+            <h2 class="section-title">Discoteca Essencial</h2>
+            <p class="section-subtitle">Álbuns fundamentais para entender o caos e o brilho do gênero.</p>
+            
+            <div class="album-grid">
+                <div class="album">
+                    <h3>Oil of Every...</h3>
+                    <span>SOPHIE (2018)</span>
+                    <p>Um marco conceitual de música eletrônica que equilibra doçura pop e agressão industrial.</p>
+                </div>
+                <div class="album">
+                    <h3>1000 gecs</h3>
+                    <span>100 gecs (2019)</span>
+                    <p>O disco mais anárquico da internet, responsável direto pela popularização do termo Hyperpop.</p>
+                </div>
+                <div class="album">
+                    <h3>How I'm Feeling...</h3>
+                    <span>Charli XCX (2020)</span>
+                    <p>Criado em isolamento na quarentena, captura a urgência e a claustrofobia digital da era.</p>
+                </div>
+                <div class="album">
+                    <h3>7G</h3>
+                    <span>A. G. Cook (2020)</span>
+                    <p>Uma odisseia de 49 faixas divididas em 7 discos que exploram os limites conceituais dos sintetizadores.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CLIPES / VÍDEOS ================= -->
+        <section id="clipes">
+            <h2 class="section-title">Clipes Marcantes</h2>
+            <p class="section-subtitle">A tradução em vídeo da sobrecarga sensorial do estilo.</p>
+            
+            <div class="clips">
+                <div class="clip">
+                    <h3>"Money Machine"</h3>
+                    <p>Guitarras distorcidas, roupas oversized e um cenário surrealista marcam o hino definitivo dos 100 gecs.</p>
+                </div>
+                <div class="clip">
+                    <h3>"Faceshopping"</h3>
+                    <p>A exploração visual bizarrra e genial da mercantilização do corpo e identidade digital por SOPHIE.</p>
+                </div>
+                <div class="clip">
+                    <h3>"Claws"</h3>
+                    <p>Charli XCX entrega telas verdes, visuais Y2K e estéticas de GIFs psicodélicos de internet em alta velocidade.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= IMPACTO CULTURAL ================= -->
+        <section id="impacto">
+            <h2 class="section-title">O Impacto na Cultura Digital</h2>
+            <p class="section-subtitle">Como uma subcultura do SoundCloud e Spotify mudou a internet.</p>
+            <div class="impact">
+                <p>O Hyperpop não se restringe apenas às caixas de som; ele dita o comportamento de comunidades inteiras no TikTok, Discord e Twitter. Ao desafiar as barreiras tradicionais de gênero, sexualidade, moda e tecnologia, o estilo tornou-se o refúgio artístico de uma geração que cresceu hiperconectada e cansada da previsibilidade das mídias tradicionais.</p>
+            </div>
+        </section>
+
+        <!-- ================= CORES (Fim do seu CSS original) ================= -->
+        <section id="paleta">
+            <h2 class="section-title" style="text-align: center;">Paleta de Cores</h2>
+            <div class="colors">
