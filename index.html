@@ -1,1460 +1,1234 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>HYPER//REAL — Hyperpop & Experimental</title>
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-
-        /* =========================
-           RESET
-        ========================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: #050505;
-            color: #fff;
-            font-family: "Space Mono", monospace;
-            overflow-x: hidden;
-        }
-
-        ::selection {
-            background: #ff00ff;
-            color: #000;
-        }
-
-
-        /* =========================
-           BACKGROUND
-        ========================= */
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 999;
-
-            background:
-                linear-gradient(
-                    rgba(255,255,255,0.025) 50%,
-                    transparent 50%
-                );
-
-            background-size: 100% 4px;
-            opacity: .18;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-
-            background:
-                radial-gradient(circle at 20% 20%, #ff00ff22, transparent 25%),
-                radial-gradient(circle at 80% 10%, #00ffff22, transparent 25%),
-                radial-gradient(circle at 50% 90%, #8a00ff22, transparent 30%);
-
-            z-index: -1;
-        }
-
-
-        /* =========================
-           NAV
-        ========================= */
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 18px 6%;
-
-            background: rgba(5,5,5,.75);
-            backdrop-filter: blur(15px);
-
-            border-bottom: 1px solid #ffffff18;
-        }
-
-        .logo {
-            font-family: "Archivo Black";
-            font-size: 22px;
-            color: #fff;
-            text-shadow:
-                3px 3px #ff00ff,
-                -3px -3px #00ffff;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 12px;
-            text-transform: uppercase;
-            transition: .2s;
-        }
-
-        nav a:hover {
-            color: #ff00ff;
-            text-shadow: 0 0 10px #ff00ff;
-        }
-
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 100vh;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            text-align: center;
-
-            padding: 120px 20px 60px;
-
-            position: relative;
-        }
-
-        .hero h1 {
-            font-family: "Archivo Black";
-            font-size: clamp(60px, 12vw, 180px);
-            line-height: .8;
-
-            letter-spacing: -8px;
-
-            text-transform: uppercase;
-
-            animation: glitch 2.8s infinite;
-
-            text-shadow:
-                7px 7px #ff00ff,
-                -7px -7px #00ffff;
-        }
-
-        .hero h2 {
-            margin-top: 40px;
-
-            font-size: clamp(15px, 2vw, 25px);
-
-            color: #00ffff;
-
-            letter-spacing: 5px;
-        }
-
-        .hero p {
-            max-width: 700px;
-            margin-top: 25px;
-
-            color: #aaa;
-            line-height: 1.8;
-        }
-
-        .enter {
-            margin-top: 40px;
-
-            display: inline-block;
-
-            padding: 15px 35px;
-
-            border: 2px solid #ff00ff;
-
-            color: white;
-            text-decoration: none;
-
-            box-shadow:
-                5px 5px #00ffff,
-                0 0 20px #ff00ff;
-
-            transition: .2s;
-        }
-
-        .enter:hover {
-            transform: translate(5px,5px);
-            box-shadow:
-                0 0 30px #ff00ff,
-                0 0 60px #00ffff;
-        }
-
-
-        /* =========================
-           GENERAL
-        ========================= */
-
-        section {
-            padding: 120px 7%;
-        }
-
-        .section-title {
-            font-family: "Archivo Black";
-            font-size: clamp(35px, 6vw, 80px);
-
-            text-transform: uppercase;
-
-            margin-bottom: 60px;
-
-            color: #fff;
-
-            text-shadow:
-                4px 4px #ff00ff,
-                -4px -4px #00ffff;
-        }
-
-        .pink {
-            color: #ff00ff;
-        }
-
-        .cyan {
-            color: #00ffff;
-        }
-
-
-        /* =========================
-           ABOUT
-        ========================= */
-
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text {
-            line-height: 1.9;
-            color: #ccc;
-        }
-
-        .about-text strong {
-            color: #fff;
-        }
-
-        .definition {
-            border: 1px solid #ff00ff;
-
-            padding: 40px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #ff00ff12,
-                    #00ffff08
-                );
-
-            box-shadow:
-                10px 10px 0 #00ffff;
-
-            transform: rotate(-1deg);
-        }
-
-        .definition h3 {
-            font-family: "Archivo Black";
-            color: #ff00ff;
-            font-size: 35px;
-            margin-bottom: 20px;
-        }
-
-
-        /* =========================
-           ARTISTS
-        ========================= */
-
-        .artists {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .artist {
-            position: relative;
-            min-height: 390px;
-
-            overflow: hidden;
-
-            border: 1px solid #ffffff22;
-
-            background: #111;
-
-            transition: .3s;
-
-            cursor: pointer;
-        }
-
-        .artist:hover {
-            transform:
-                translateY(-12px)
-                rotate(-1deg);
-
-            border-color: #ff00ff;
-
-            box-shadow:
-                8px 8px #00ffff,
-                0 0 40px #ff00ff55;
-        }
-
-        .artist img {
-            width: 100%;
-            height: 280px;
-
-            object-fit: cover;
-
-            filter:
-                saturate(1.4)
-                contrast(1.15);
-
-            transition: .5s;
-        }
-
-        .artist:hover img {
-            transform: scale(1.08);
-            filter:
-                saturate(2)
-                contrast(1.2);
-        }
-
-        .artist-info {
-            padding: 18px;
-        }
-
-        .artist-info h3 {
-            font-family: "Archivo Black";
-            font-size: 22px;
-        }
-
-        .artist-info span {
-            color: #00ffff;
-            font-size: 11px;
-        }
-
-
-        /* =========================
-           ALBUMS
-        ========================= */
-
-        .albums {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .album {
-            padding: 30px;
-
-            min-height: 250px;
-
-            border: 1px solid #ffffff20;
-
-            background: #0d0d0d;
-
-            transition: .3s;
-        }
-
-        .album:hover {
-            border-color: #00ffff;
-
-            transform:
-                translateY(-8px)
-                rotate(1deg);
-
-            box-shadow:
-                0 0 30px #00ffff33;
-        }
-
-        .album-number {
-            color: #ff00ff;
-            font-size: 12px;
-        }
-
-        .album h3 {
-            font-family: "Archivo Black";
-            font-size: 28px;
-
-            margin: 15px 0;
-        }
-
-        .album p {
-            color: #aaa;
-            line-height: 1.7;
-            font-size: 14px;
-        }
-
-
-        /* =========================
-           VIDEOS
-        ========================= */
-
-        .videos {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-
-        .video {
-            border: 1px solid #ffffff20;
-            background: #090909;
-            padding: 10px;
-
-            transition: .3s;
-        }
-
-        .video:hover {
-            border-color: #ff00ff;
-            box-shadow: 0 0 35px #ff00ff33;
-        }
-
-        .video iframe {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border: none;
-        }
-
-        .video h3 {
-            padding: 15px 5px 5px;
-            font-size: 14px;
-        }
-
-
-        /* =========================
-           IMPACT
-        ========================= */
-
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .impact {
-            padding: 35px;
-
-            border-left: 4px solid #ff00ff;
-
-            background: #101010;
-
-            transition: .3s;
-        }
-
-        .impact:nth-child(even) {
-            border-color: #00ffff;
-        }
-
-        .impact:hover {
-            transform: scale(1.03);
-        }
-
-        .impact h3 {
-            font-family: "Archivo Black";
-            margin-bottom: 15px;
-        }
-
-        .impact p {
-            color: #aaa;
-            line-height: 1.7;
-            font-size: 14px;
-        }
-
-
-        /* =========================
-           TIMELINE
-        ========================= */
-
-        .timeline {
-            max-width: 900px;
-            margin: auto;
-            border-left: 2px solid #ff00ff;
-        }
-
-        .timeline-item {
-            padding: 0 0 50px 40px;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: "";
-
-            width: 15px;
-            height: 15px;
-
-            background: #00ffff;
-
-            border: 3px solid #050505;
-
-            position: absolute;
-
-            left: -9px;
-            top: 0;
-
-            box-shadow: 0 0 20px #00ffff;
-        }
-
-        .timeline-item h3 {
-            color: #ff00ff;
-            font-family: "Archivo Black";
-        }
-
-        .timeline-item p {
-            color: #aaa;
-            margin-top: 10px;
-            line-height: 1.7;
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            padding: 70px 20px;
-
-            text-align: center;
-
-            border-top: 1px solid #ffffff15;
-
-            color: #666;
-        }
-
-        footer strong {
-            color: #ff00ff;
-        }
-
-
-        /* =========================
-           GLITCH
-        ========================= */
-
-        @keyframes glitch {
-
-            0%, 90%, 100% {
-                transform: translate(0);
-            }
-
-            92% {
-                transform: translate(-5px, 2px);
-            }
-
-            94% {
-                transform: translate(5px, -2px);
-            }
-
-            96% {
-                transform: translate(-2px, 4px);
-            }
-
-        }
-
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 1000px) {
-
-            .artists {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .albums,
-            .impact-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-        }
-
-        @media (max-width: 700px) {
-
-            nav ul {
-                display: none;
-            }
-
-            .about,
-            .artists,
-            .albums,
-            .videos,
-            .impact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                letter-spacing: -4px;
-            }
-
-            section {
-                padding: 80px 5%;
-            }
-
-        }
-
-    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS externo -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- =========================
+         NAVEGAÇÃO
+    ========================== -->
 
-<!-- =========================
-     NAV
-========================= -->
+    <nav>
 
-<nav>
-
-    <div class="logo">
-        HYPER//REAL
-    </div>
-
-    <ul>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#artistas">Artistas</a></li>
-        <li><a href="#albuns">Álbuns</a></li>
-        <li><a href="#clips">Clips</a></li>
-        <li><a href="#impacto">Impacto</a></li>
-    </ul>
-
-</nav>
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<header class="hero">
-
-    <h1>HYPER<br>POP</h1>
-
-    <h2>EXPERIMENTAL // DIGITAL // EXTREME</h2>
-
-    <p>
-        Uma viagem pelo universo do hyperpop, PC Music,
-        pop experimental, club music e pela estética
-        hiper-digital que transformou a música contemporânea.
-    </p>
-
-    <a class="enter" href="#sobre">
-        ENTRAR NO UNIVERSO →
-    </a>
-
-</header>
-
-
-<!-- =========================
-     SOBRE
-========================= -->
-
-<section id="sobre">
-
-    <h2 class="section-title">
-        O QUE É <span class="pink">HYPERPOP?</span>
-    </h2>
-
-    <div class="about">
-
-        <div class="about-text">
-
-            <p>
-                Hyperpop é um termo associado a uma abordagem
-                exagerada e experimental da música pop.
-                Em vez de seguir as regras tradicionais,
-                o gênero frequentemente amplifica tudo:
-                vocais processados, sintetizadores brilhantes,
-                graves distorcidos, mudanças bruscas,
-                melodias extremamente doces e produção digital.
-            </p>
-
-            <br>
-
-            <p>
-                A cena ganhou força na década de 2010 em torno
-                de comunidades como a <strong>PC Music</strong>,
-                fundada por A. G. Cook. Artistas como
-                <strong>SOPHIE, Charli XCX, Hannah Diamond,
-                GFOTY e Danny L Harle</strong> ajudaram a
-                construir uma nova linguagem para o pop.
-            </p>
-
-            <br>
-
-            <p>
-                O resultado não é necessariamente um gênero
-                fechado. Hyperpop funciona mais como uma
-                estética e uma atitude: pegar elementos
-                existentes e levá-los ao extremo.
-            </p>
-
+        <div class="logo">
+            HYPER//REAL
         </div>
 
+        <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#artistas">Artistas</a></li>
+            <li><a href="#albuns">Álbuns</a></li>
+            <li><a href="#clips">Clips</a></li>
+            <li><a href="#impacto">Impacto</a></li>
+        </ul>
 
-        <div class="definition">
-
-            <h3>HYPER<br>REALITY</h3>
-
-            <p>
-                POP + INTERNET + CLUB + ARTIFICIALIDADE
-                + EXPERIMENTAÇÃO + EXCESSO
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
+    </nav>
 
 
-<!-- =========================
-     ARTISTAS
-========================= -->
+    <!-- =========================
+         HERO
+    ========================== -->
 
-<section id="artistas">
+    <header class="hero">
 
-    <h2 class="section-title">
-        ARTISTAS<span class="cyan">_</span>
-    </h2>
+        <div class="hero-noise"></div>
+
+        <span class="hero-tag">
+            // DIGITAL POP ARCHIVE //
+        </span>
+
+        <h1>
+            HYPER<br>POP
+        </h1>
+
+        <h2>
+            EXPERIMENTAL // DIGITAL // EXTREME
+        </h2>
+
+        <p>
+            Uma viagem pelo universo do hyperpop,
+            PC Music, pop experimental, club music
+            e pela estética hiper-digital que
+            transformou a música contemporânea.
+        </p>
+
+        <a class="enter" href="#sobre">
+            ENTRAR NO UNIVERSO →
+        </a>
+
+    </header>
 
 
-    <div class="artists">
+    <!-- =========================
+         SOBRE
+    ========================== -->
+
+    <section id="sobre">
+
+        <h2 class="section-title">
+            O QUE É <span class="pink">HYPERPOP?</span>
+        </h2>
+
+        <div class="about">
+
+            <div class="about-text">
+
+                <p>
+                    Hyperpop é um termo associado a uma abordagem
+                    exagerada e experimental da música pop.
+                    Em vez de seguir as regras tradicionais,
+                    o gênero frequentemente amplifica tudo:
+                    vocais processados, sintetizadores brilhantes,
+                    graves distorcidos, mudanças bruscas,
+                    melodias extremamente doces e produção digital.
+                </p>
+
+                <p>
+                    A cena ganhou força na década de 2010 em torno
+                    de comunidades como a <strong>PC Music</strong>,
+                    fundada por A.G. Cook.
+                </p>
+
+                <p>
+                    Artistas como <strong>SOPHIE, Charli XCX,
+                    Hannah Diamond, GFOTY e A.G. Cook</strong>
+                    ajudaram a construir uma nova linguagem para
+                    o pop.
+                </p>
+
+                <p>
+                    O resultado não é necessariamente um gênero
+                    fechado. Hyperpop funciona também como uma
+                    estética e uma atitude: pegar elementos
+                    existentes e levá-los ao extremo.
+                </p>
+
+            </div>
 
 
-        <!-- SOPHIE -->
+            <div class="definition">
 
-        <div class="artist">
-
-            <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Sophie_at_YOLA_D%C3%8DA_2019.jpg/640px-Sophie_at_YOLA_D%C3%8DA_2019.jpg"
-                alt="SOPHIE"
-            >
-
-            <div class="artist-info">
-
-                <h3>SOPHIE</h3>
-
-                <span>
-                    SOUND DESIGN / AVANT-POP
+                <span class="small-label">
+                    SYSTEM_ERROR_001
                 </span>
+
+                <h3>
+                    HYPER<br>REALITY
+                </h3>
+
+                <div class="formula">
+                    POP
+                    +
+                    INTERNET
+                    +
+                    CLUB
+                    +
+                    ARTIFICIALIDADE
+                    +
+                    EXCESSO
+                </div>
 
             </div>
 
         </div>
 
+    </section>
 
-        <!-- CHARLI -->
 
-        <div class="artist">
+    <!-- =========================
+         ARTISTAS
+    ========================== -->
 
-            <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Charli_XCX_-_Brat_Tour_-_Glasgow_-_2024-11-27.jpg/640px-Charli_XCX_-_Brat_Tour_-_Glasgow_-_2024-11-27.jpg"
-                alt="Charli XCX"
-            >
+    <section id="artistas">
 
-            <div class="artist-info">
+        <div class="section-header">
 
-                <h3>CHARLI XCX</h3>
+            <span>
+                001 / ARTISTS
+            </span>
 
-                <span>
-                    POP / CLUB / EXPERIMENTAL
+            <span>
+                [ ONLINE ]
+            </span>
+
+        </div>
+
+        <h2 class="section-title">
+            ARTISTAS<span class="cyan">_</span>
+        </h2>
+
+
+        <div class="artists">
+
+
+            <!-- SOPHIE -->
+
+            <article class="artist">
+
+                <div class="artist-image">
+
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Sophie_at_YOLA_D%C3%8DA_2019.jpg/640px-Sophie_at_YOLA_D%C3%8DA_2019.jpg"
+                        alt="SOPHIE"
+                    >
+
+                    <span class="artist-number">
+                        001
+                    </span>
+
+                </div>
+
+                <div class="artist-info">
+
+                    <h3>SOPHIE</h3>
+
+                    <span>
+                        SOUND DESIGN / AVANT-POP
+                    </span>
+
+                    <p>
+                        Produção hiper-artificial, texturas
+                        plásticas e uma abordagem radical
+                        do pop.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- CHARLI XCX -->
+
+            <article class="artist">
+
+                <div class="artist-image">
+
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Charli_XCX_-_Brat_Tour_-_Glasgow_-_2024-11-27.jpg/640px-Charli_XCX_-_Brat_Tour_-_Glasgow_-_2024-11-27.jpg"
+                        alt="Charli XCX"
+                    >
+
+                    <span class="artist-number">
+                        002
+                    </span>
+
+                </div>
+
+                <div class="artist-info">
+
+                    <h3>CHARLI XCX</h3>
+
+                    <span>
+                        POP / CLUB / EXPERIMENTAL
+                    </span>
+
+                    <p>
+                        Uma das principais artistas a levar
+                        ideias da música experimental para
+                        o centro do pop.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- A.G. COOK -->
+
+            <article class="artist">
+
+                <div class="artist-image">
+
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/A._G._Cook.jpg/640px-A._G._Cook.jpg"
+                        alt="A.G. Cook"
+                    >
+
+                    <span class="artist-number">
+                        003
+                    </span>
+
+                </div>
+
+                <div class="artist-info">
+
+                    <h3>A.G. COOK</h3>
+
+                    <span>
+                        PC MUSIC / PRODUCER
+                    </span>
+
+                    <p>
+                        Fundador da PC Music e figura importante
+                        na construção da estética digital do
+                        hyperpop.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- HANNAH DIAMOND -->
+
+            <article class="artist">
+
+                <div class="artist-image">
+
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Hannah_Diamond.jpg/640px-Hannah_Diamond.jpg"
+                        alt="Hannah Diamond"
+                    >
+
+                    <span class="artist-number">
+                        004
+                    </span>
+
+                </div>
+
+                <div class="artist-info">
+
+                    <h3>HANNAH DIAMOND</h3>
+
+                    <span>
+                        HYPER-REAL POP / VISUAL ART
+                    </span>
+
+                    <p>
+                        Fotografia hiper-realista e pop digital
+                        tornaram sua identidade visual tão
+                        importante quanto sua música.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- ARCA -->
+
+            <article class="artist">
+
+                <div class="artist-image">
+
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Arca_-_Primavera_Sound_2022_-_09.jpg/640px-Arca_-_Primavera_Sound_2022_-_09.jpg"
+                        alt="Arca"
+                    >
+
+                    <span class="artist-number">
+                        005
+                    </span>
+
+                </div>
+
+                <div class="artist-info">
+
+                    <h3>ARCA</h3>
+
+                    <span>
+                        EXPERIMENTAL / DECONSTRUCTED CLUB
+                    </span>
+
+                    <p>
+                        Experimentação eletrônica, performance,
+                        identidade e desconstrução sonora.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- GFOTY -->
+
+            <article class="artist">
+
+                <div class="artist-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80"
+                        alt="GFOTY"
+                    >
+
+                    <span class="artist-number">
+                        006
+                    </span>
+
+                </div>
+
+                <div class="artist-info">
+
+                    <h3>GFOTY</h3>
+
+                    <span>
+                        PC MUSIC / DIGITAL POP
+                    </span>
+
+                    <p>
+                        Uma das figuras associadas à primeira
+                        fase da estética exagerada da PC Music.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ALBUNS
+    ========================== -->
+
+    <section id="albuns">
+
+        <div class="section-header">
+
+            <span>
+                002 / DISCOGRAPHY
+            </span>
+
+            <span>
+                SELECTED WORKS
+            </span>
+
+        </div>
+
+        <h2 class="section-title">
+            ÁLBUNS <span class="pink">&</span> PROJETOS
+        </h2>
+
+
+        <div class="albums">
+
+
+            <article class="album">
+
+                <span class="album-number">
+                    01 // SOPHIE
                 </span>
+
+                <h3>
+                    PRODUCT
+                </h3>
+
+                <p>
+                    Coleção de singles que ajudou a estabelecer
+                    a estética sonora de SOPHIE, incluindo
+                    "Bipp" e "Lemonade".
+                </p>
+
+                <div class="album-tag">
+                    2015
+                </div>
+
+            </article>
+
+
+            <article class="album featured">
+
+                <span class="album-number">
+                    02 // SOPHIE
+                </span>
+
+                <h3>
+                    OIL OF EVERY PEARL'S<br>
+                    UN-INSIDES
+                </h3>
+
+                <p>
+                    Um trabalho central de sua discografia,
+                    explorando identidade, transformação,
+                    artificialidade e design sonoro.
+                </p>
+
+                <div class="album-tag">
+                    2018
+                </div>
+
+            </article>
+
+
+            <article class="album">
+
+                <span class="album-number">
+                    03 // CHARLI XCX
+                </span>
+
+                <h3>
+                    POP 2
+                </h3>
+
+                <p>
+                    Mixtape colaborativa que aproximou
+                    ainda mais Charli XCX da estética
+                    experimental da PC Music.
+                </p>
+
+                <div class="album-tag">
+                    2017
+                </div>
+
+            </article>
+
+
+            <article class="album">
+
+                <span class="album-number">
+                    04 // A.G. COOK
+                </span>
+
+                <h3>
+                    7G
+                </h3>
+
+                <p>
+                    Um projeto expansivo que percorre
+                    pop, eletrônica, ambient e experimentação.
+                </p>
+
+                <div class="album-tag">
+                    2020
+                </div>
+
+            </article>
+
+
+            <article class="album">
+
+                <span class="album-number">
+                    05 // HANNAH DIAMOND
+                </span>
+
+                <h3>
+                    REFLECTION
+                </h3>
+
+                <p>
+                    Um retrato da estética hiper-real de
+                    Hannah Diamond combinando pop eletrônico
+                    e fotografia digital.
+                </p>
+
+                <div class="album-tag">
+                    2019
+                </div>
+
+            </article>
+
+
+            <article class="album">
+
+                <span class="album-number">
+                    06 // ARCA
+                </span>
+
+                <h3>
+                    KICK
+                </h3>
+
+                <p>
+                    Série de trabalhos que atravessa
+                    eletrônica, pop, performance e
+                    experimentação.
+                </p>
+
+                <div class="album-tag">
+                    2020+
+                </div>
+
+            </article>
+
+
+            <article class="album">
+
+                <span class="album-number">
+                    07 // CHARLI XCX
+                </span>
+
+                <h3>
+                    HOW I'M FEELING NOW
+                </h3>
+
+                <p>
+                    Criado durante a pandemia, explorando
+                    colaboração online e produção digital.
+                </p>
+
+                <div class="album-tag">
+                    2020
+                </div>
+
+            </article>
+
+
+            <article class="album">
+
+                <span class="album-number">
+                    08 // A.G. COOK
+                </span>
+
+                <h3>
+                    APPLE
+                </h3>
+
+                <p>
+                    Um dos projetos que apresenta sua visão
+                    de pop hiper-digital e experimental.
+                </p>
+
+                <div class="album-tag">
+                    2020
+                </div>
+
+            </article>
+
+
+            <article class="album">
+
+                <span class="album-number">
+                    09 // SOPHIE
+                </span>
+
+                <h3>
+                    SOPHIE
+                </h3>
+
+                <p>
+                    Álbum póstumo lançado em 2024,
+                    reunindo material trabalhado por SOPHIE
+                    ao longo de sua carreira.
+                </p>
+
+                <div class="album-tag">
+                    2024
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CLIPS
+    ========================== -->
+
+    <section id="clips">
+
+        <div class="section-header">
+
+            <span>
+                003 / VIDEO ARCHIVE
+            </span>
+
+            <span>
+                WATCH_NOW
+            </span>
+
+        </div>
+
+        <h2 class="section-title">
+            VISUAL <span class="cyan">ARCHIVE</span>
+        </h2>
+
+
+        <div class="videos">
+
+
+            <div class="video">
+
+                <div class="video-screen">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/m_S0qcejVvQ"
+                        title="SOPHIE - It's Okay To Cry"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+                <div class="video-info">
+
+                    <span>
+                        SOPHIE / 2017
+                    </span>
+
+                    <h3>
+                        IT'S OKAY TO CRY
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="video">
+
+                <div class="video-screen">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/6-v1b9waHWY"
+                        title="Charli XCX - Vroom Vroom"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+                <div class="video-info">
+
+                    <span>
+                        CHARLI XCX / 2016
+                    </span>
+
+                    <h3>
+                        VROOM VROOM
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="video">
+
+                <div class="video-screen">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/2L9n8lM7zKs"
+                        title="Hannah Diamond"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+                <div class="video-info">
+
+                    <span>
+                        HANNAH DIAMOND
+                    </span>
+
+                    <h3>
+                        DIGITAL ROMANCE
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="video">
+
+                <div class="video-screen">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/9qlpWJk7x8M"
+                        title="Arca"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+                <div class="video-info">
+
+                    <span>
+                        ARCA / EXPERIMENTAL
+                    </span>
+
+                    <h3>
+                        DECONSTRUCTED REALITY
+                    </h3>
+
+                </div>
 
             </div>
 
         </div>
 
+    </section>
 
-        <!-- AG COOK -->
 
-        <div class="artist">
+    <!-- =========================
+         IMPACTO CULTURAL
+    ========================== -->
 
-            <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/A._G._Cook.jpg/640px-A._G._Cook.jpg"
-                alt="A.G. Cook"
-            >
+    <section id="impacto">
 
-            <div class="artist-info">
+        <div class="section-header">
 
-                <h3>A.G. COOK</h3>
+            <span>
+                004 / CULTURAL IMPACT
+            </span>
 
-                <span>
-                    PC MUSIC / PRODUCER
+            <span>
+                WORLDWIDE
+            </span>
+
+        </div>
+
+        <h2 class="section-title">
+            IMPACTO <span class="pink">CULTURAL</span>
+        </h2>
+
+
+        <div class="impact-grid">
+
+
+            <div class="impact">
+
+                <span class="impact-icon">
+                    01
                 </span>
+
+                <h3>
+                    POP SEM FRONTEIRAS
+                </h3>
+
+                <p>
+                    A estética experimental deixou de estar
+                    restrita a pequenos círculos eletrônicos.
+                    Elementos de produção associados ao
+                    hyperpop passaram a aparecer em diferentes
+                    áreas do pop contemporâneo.
+                </p>
+
+            </div>
+
+
+            <div class="impact">
+
+                <span class="impact-icon">
+                    02
+                </span>
+
+                <h3>
+                    INTERNET COMO ESTÉTICA
+                </h3>
+
+                <p>
+                    O hyperpop absorveu linguagens da internet:
+                    memes, avatares, cultura de fandom,
+                    excesso visual e velocidade de circulação.
+                </p>
+
+            </div>
+
+
+            <div class="impact">
+
+                <span class="impact-icon">
+                    03
+                </span>
+
+                <h3>
+                    PRODUTOR COMO ARTISTA
+                </h3>
+
+                <p>
+                    SOPHIE e A.G. Cook ajudaram a colocar
+                    produção e design sonoro no centro da
+                    identidade artística.
+                </p>
+
+            </div>
+
+
+            <div class="impact">
+
+                <span class="impact-icon">
+                    04
+                </span>
+
+                <h3>
+                    IDENTIDADE
+                </h3>
+
+                <p>
+                    Artistas da cena exploraram gênero,
+                    artificialidade, transformação e
+                    construção de persona como elementos
+                    centrais da obra.
+                </p>
+
+            </div>
+
+
+            <div class="impact">
+
+                <span class="impact-icon">
+                    05
+                </span>
+
+                <h3>
+                    VISUAL + SOM
+                </h3>
+
+                <p>
+                    Música, fotografia, moda, videoclipes,
+                    performance e presença digital passaram
+                    a funcionar como partes de um mesmo
+                    universo artístico.
+                </p>
+
+            </div>
+
+
+            <div class="impact">
+
+                <span class="impact-icon">
+                    06
+                </span>
+
+                <h3>
+                    NOVAS GERAÇÕES
+                </h3>
+
+                <p>
+                    A linguagem desenvolvida por essa cena
+                    continua sendo reinterpretada por artistas
+                    de pop, rap, eletrônica e club music.
+                </p>
 
             </div>
 
         </div>
 
+    </section>
 
-        <!-- HANNAH -->
 
-        <div class="artist">
+    <!-- =========================
+         TIMELINE
+    ========================== -->
 
-            <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Hannah_Diamond.jpg/640px-Hannah_Diamond.jpg"
-                alt="Hannah Diamond"
-            >
+    <section class="timeline-section">
 
-            <div class="artist-info">
+        <div class="section-header">
 
-                <h3>HANNAH DIAMOND</h3>
+            <span>
+                005 / TIMELINE
+            </span>
 
-                <span>
-                    HYPER-REAL POP / VISUAL ART
-                </span>
+            <span>
+                SYSTEM_HISTORY
+            </span>
+
+        </div>
+
+        <h2 class="section-title">
+            TIMELINE<span class="cyan">_</span>
+        </h2>
+
+
+        <div class="timeline">
+
+
+            <div class="timeline-item">
+
+                <span>2013</span>
+
+                <div>
+
+                    <h3>
+                        PC MUSIC
+                    </h3>
+
+                    <p>
+                        A.G. Cook estabelece a PC Music,
+                        criando uma plataforma para uma
+                        nova abordagem hiper-estilizada
+                        do pop.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <span>2013</span>
+
+                <div>
+
+                    <h3>
+                        BIPP
+                    </h3>
+
+                    <p>
+                        SOPHIE lança "Bipp" e apresenta
+                        uma abordagem radicalmente artificial
+                        para a música pop eletrônica.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <span>2015</span>
+
+                <div>
+
+                    <h3>
+                        PRODUCT
+                    </h3>
+
+                    <p>
+                        Os primeiros singles de SOPHIE são
+                        reunidos em Product.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <span>2017</span>
+
+                <div>
+
+                    <h3>
+                        POP 2
+                    </h3>
+
+                    <p>
+                        Charli XCX lança Pop 2, aproximando
+                        ainda mais o pop de uma estética
+                        experimental e digital.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <span>2018</span>
+
+                <div>
+
+                    <h3>
+                        OIL OF EVERY PEARL'S UN-INSIDES
+                    </h3>
+
+                    <p>
+                        SOPHIE expande sua pesquisa sobre
+                        identidade, corpo, artificialidade
+                        e som.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <span>2020</span>
+
+                <div>
+
+                    <h3>
+                        HYPERPOP
+                    </h3>
+
+                    <p>
+                        O termo ganha grande visibilidade
+                        através de plataformas digitais
+                        e playlists.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <span>2024</span>
+
+                <div>
+
+                    <h3>
+                        SOPHIE
+                    </h3>
+
+                    <p>
+                        O álbum póstumo SOPHIE amplia o
+                        acesso a material produzido pela
+                        artista ao longo de sua carreira.
+                    </p>
+
+                </div>
 
             </div>
 
         </div>
 
+    </section>
 
-        <!-- ARCA -->
 
-        <div class="artist">
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
-            <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Arca_-_Primavera_Sound_2022_-_09.jpg/640px-Arca_-_Primavera_Sound_2022_-_09.jpg"
-                alt="Arca"
-            >
+    <footer>
 
-            <div class="artist-info">
-
-                <h3>ARCA</h3>
-
-                <span>
-                    EXPERIMENTAL / DECONSTRUCTED CLUB
-                </span>
-
-            </div>
-
+        <div class="footer-logo">
+            HYPER//REAL
         </div>
 
+        <p>
+            AN ARCHIVE OF HYPERPOP &
+            EXPERIMENTAL MUSIC
+        </p>
 
-        <!-- GFOTY -->
+        <div class="footer-line"></div>
 
-        <div class="artist">
+        <strong>
+            MAKE POP WEIRD AGAIN.
+        </strong>
 
-            <img
-                src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80"
-                alt="GFOTY"
-            >
+        <small>
+            © 2026 HYPER//REAL
+        </small>
 
-            <div class="artist-info">
+    </footer>
 
-                <h3>GFOTY</h3>
 
-                <span>
-                    PC MUSIC / DIGITAL POP
-                </span>
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
 
-            </div>
+    <script>
 
-        </div>
+        /*
+         * GLITCH DO TÍTULO
+         */
 
-    </div>
+        const title = document.querySelector(".hero h1");
 
-</section>
+        setInterval(() => {
 
+            if (Math.random() > 0.7) {
 
-<!-- =========================
-     ALBUNS
-========================= -->
+                title.style.transform =
+                    `translate(
+                        ${Math.random() * 8 - 4}px,
+                        ${Math.random() * 6 - 3}px
+                    )`;
 
-<section id="albuns">
+                setTimeout(() => {
 
-    <h2 class="section-title">
-        ÁLBUNS <span class="pink">&</span> PROJETOS
-    </h2>
+                    title.style.transform = "";
 
+                }, 100);
 
-    <div class="albums">
+            }
 
+        }, 700);
 
-        <article class="album">
 
-            <span class="album-number">
-                01 // SOPHIE
-            </span>
+        /*
+         * MOVIMENTO DO MOUSE
+         */
 
-            <h3>
-                OIL OF EVERY PEARL'S
-                UN-INSIDES
-            </h3>
+        document.addEventListener("mousemove", (event) => {
 
-            <p>
-                O trabalho de SOPHIE levou seu design sonoro
-                para um território ainda mais experimental,
-                explorando identidade, transformação,
-                artificialidade e pop de vanguarda.
-            </p>
+            const x =
+                (event.clientX / window.innerWidth - 0.5) * 10;
 
-        </article>
+            const y =
+                (event.clientY / window.innerHeight - 0.5) * 10;
 
-
-        <article class="album">
-
-            <span class="album-number">
-                02 // SOPHIE
-            </span>
-
-            <h3>
-                PRODUCT
-            </h3>
-
-            <p>
-                Coleção fundamental dos singles que ajudaram
-                a definir sua estética inicial, incluindo
-                faixas como Bipp e Lemonade.
-            </p>
-
-        </article>
-
-
-        <article class="album">
-
-            <span class="album-number">
-                03 // CHARLI XCX
-            </span>
-
-            <h3>
-                POP 2
-            </h3>
-
-            <p>
-                Mixtape que reuniu Charli com uma geração
-                de produtores e artistas ligados ao pop
-                experimental e à estética da PC Music.
-            </p>
-
-        </article>
-
-
-        <article class="album">
-
-            <span class="album-number">
-                04 // A.G. COOK
-            </span>
-
-            <h3>
-                7G
-            </h3>
-
-            <p>
-                Um projeto gigantesco que apresenta
-                diferentes facetas da produção de Cook,
-                atravessando pop, eletrônica, ambient
-                e experimentação.
-            </p>
-
-        </article>
-
-
-        <article class="album">
-
-            <span class="album-number">
-                05 // A.G. COOK
-            </span>
-
-            <h3>
-                APPLE
-            </h3>
-
-            <p>
-                Uma versão mais concentrada da visão pop
-                de Cook, combinando melodias acessíveis
-                com produção hiper-digital.
-            </p>
-
-        </article>
-
-
-        <article class="album">
-
-            <span class="album-number">
-                06 // HANNAH DIAMOND
-            </span>
-
-            <h3>
-                REFLECTION
-            </h3>
-
-            <p>
-                Um dos principais registros da estética
-                hiper-real de Hannah Diamond, unindo
-                pop eletrônico, fotografia e identidade
-                visual digital.
-            </p>
-
-        </article>
-
-
-        <article class="album">
-
-            <span class="album-number">
-                07 // ARCA
-            </span>
-
-            <h3>
-                KICK
-            </h3>
-
-            <p>
-                Uma série de trabalhos que expande as
-                fronteiras entre música eletrônica,
-                performance, pop e experimentação sonora.
-            </p>
-
-        </article>
-
-
-        <article class="album">
-
-            <span class="album-number">
-                08 // CHARLI XCX
-            </span>
-
-            <h3>
-                HOW I'M FEELING NOW
-            </h3>
-
-            <p>
-                Um projeto criado em grande parte durante
-                a pandemia, explorando produção digital,
-                comunidade online e colaboração à distância.
-            </p>
-
-        </article>
-
-
-        <article class="album">
-
-            <span class="album-number">
-                09 // SOPHIE
-            </span>
-
-            <h3>
-                SOPHIE
-            </h3>
-
-            <p>
-                Álbum póstumo lançado em 2024, reunindo
-                material trabalhado por SOPHIE e finalizado
-                após sua morte.
-            </p>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     CLIPS
-========================= -->
-
-<section id="clips">
-
-    <h2 class="section-title">
-        VISUAL <span class="cyan">ARCHIVE</span>
-    </h2>
-
-
-    <div class="videos">
-
-
-        <div class="video">
-
-            <iframe
-                src="https://www.youtube.com/embed/m_S0qcejVvQ"
-                title="SOPHIE - It's Okay To Cry"
-                allowfullscreen>
-            </iframe>
-
-            <h3>
-                SOPHIE — IT'S OKAY TO CRY
-            </h3>
-
-        </div>
-
-
-        <div class="video">
-
-            <iframe
-                src="https://www.youtube.com/embed/6-v1b9waHWY"
-                title="Charli XCX - Vroom Vroom"
-                allowfullscreen>
-            </iframe>
-
-            <h3>
-                CHARLI XCX — VROOM VROOM
-            </h3>
-
-        </div>
-
-
-        <div class="video">
-
-            <iframe
-                src="https://www.youtube.com/embed/2L9n8lM7zKs"
-                title="Hannah Diamond"
-                allowfullscreen>
-            </iframe>
-
-            <h3>
-                HANNAH DIAMOND — ATTACHMENT
-            </h3>
-
-        </div>
-
-
-        <div class="video">
-
-            <iframe
-                src="https://www.youtube.com/embed/9qlpWJk7x8M"
-                title="Arca"
-                allowfullscreen>
-            </iframe>
-
-            <h3>
-                ARCA — EXPERIMENTAL VISUALS
-            </h3>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     IMPACTO
-========================= -->
-
-<section id="impacto">
-
-    <h2 class="section-title">
-        IMPACTO <span class="pink">CULTURAL</span>
-    </h2>
-
-
-    <div class="impact-grid">
-
-
-        <div class="impact">
-
-            <h3>
-                POP SEM FRONTEIRAS
-            </h3>
-
-            <p>
-                A estética experimental deixou de estar
-                restrita a pequenos círculos eletrônicos.
-                Elementos de produção associados ao
-                hyperpop começaram a aparecer em diferentes
-                áreas do pop contemporâneo.
-            </p>
-
-        </div>
-
-
-        <div class="impact">
-
-            <h3>
-                INTERNET COMO ESTÉTICA
-            </h3>
-
-            <p>
-                O hyperpop absorveu linguagens da internet:
-                compressão digital, memes, avatares,
-                excesso visual, cultura de fandom e
-                velocidade de circulação.
-            </p>
-
-        </div>
-
-
-        <div class="impact">
-
-            <h3>
-                O PRODUTOR COMO ARTISTA
-            </h3>
-
-            <p>
-                SOPHIE e A.G. Cook ajudaram a colocar
-                produção e design sonoro no centro da
-                identidade artística, aproximando o papel
-                do produtor do de um autor.
-            </p>
-
-        </div>
-
-
-        <div class="impact">
-
-            <h3>
-                IDENTIDADE
-            </h3>
-
-            <p>
-                Artistas da cena exploraram gênero,
-                artificialidade, transformação e
-                construção de persona como elementos
-                centrais da obra.
-            </p>
-
-        </div>
-
-
-        <div class="impact">
-
-            <h3>
-                VISUAL + SOM
-            </h3>
-
-            <p>
-                A música passou a funcionar como parte de
-                um universo visual maior: capas, fotografia,
-                moda, videoclipes, performances e presença
-                digital.
-            </p>
-
-        </div>
-
-
-        <div class="impact">
-
-            <h3>
-                NOVAS GERAÇÕES
-            </h3>
-
-            <p>
-                A linguagem criada por essa cena influenciou
-                uma geração de artistas interessados em
-                combinar pop, eletrônica, rap, club music
-                e produção digital.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     TIMELINE
-========================= -->
-
-<section>
-
-    <h2 class="section-title">
-        TIMELINE<span class="cyan">_</span>
-    </h2>
-
-
-    <div class="timeline">
-
-
-        <div class="timeline-item">
-
-            <h3>2013 — PC MUSIC</h3>
-
-            <p>
-                A.G. Cook estabelece a PC Music,
-                criando uma plataforma para uma nova
-                abordagem hiper-estilizada do pop.
-            </p>
-
-        </div>
-
-
-        <div class="timeline-item">
-
-            <h3>2013 — BIPP</h3>
-
-            <p>
-                SOPHIE lança Bipp e apresenta ao público
-                uma abordagem radicalmente artificial
-                para a música pop eletrônica.
-            </p>
-
-        </div>
-
-
-        <div class="timeline-item">
-
-            <h3>2015 — PRODUCT</h3>
-
-            <p>
-                Os primeiros singles de SOPHIE são reunidos
-                em Product, consolidando uma estética sonora
-                que se tornaria extremamente influente.
-            </p>
-
-        </div>
-
-
-        <div class="timeline-item">
-
-            <h3>2017 — POP EXPERIMENTAL</h3>
-
-            <p>
-                A colaboração entre SOPHIE, A.G. Cook e
-                Charli XCX aproxima cada vez mais a música
-                experimental do pop mainstream.
-            </p>
-
-        </div>
-
-
-        <div class="timeline-item">
-
-            <h3>2018 — OIL OF EVERY PEARL'S UN-INSIDES</h3>
-
-            <p>
-                SOPHIE lança seu primeiro álbum de estúdio,
-                expandindo sua pesquisa sobre identidade,
-                corpo, artificialidade e som.
-            </p>
-
-        </div>
-
-
-        <div class="timeline-item">
-
-            <h3>2020 — HYPERPOP</h3>
-
-            <p>
-                O termo ganha ainda mais visibilidade através
-                de plataformas digitais e playlists,
-                alcançando novas comunidades e gerações.
-            </p>
-
-        </div>
-
-
-        <div class="timeline-item">
-
-            <h3>2024 — NOVAS LEITURAS</h3>
-
-            <p>
-                O legado de artistas como SOPHIE e da PC Music
-                continua sendo reinterpretado por produtores,
-                artistas pop e cenas eletrônicas.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-    <p>
-        HYPER//REAL © 2026
-    </p>
-
-    <br>
-
-    <p>
-        <strong>MAKE POP WEIRD AGAIN.</strong>
-    </p>
-
-    <br>
-
-    <p>
-        Projeto experimental sobre Hyperpop,
-        PC Music e música eletrônica de vanguarda.
-    </p>
-
-</footer>
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
-<script>
-
-    // Efeito de glitch aleatório no título
-
-    const title = document.querySelector(".hero h1");
-
-    setInterval(() => {
-
-        if (Math.random() > 0.7) {
-
-            title.style.transform =
-                `translate(${Math.random()*8-4}px,
-                           ${Math.random()*6-3}px)`;
-
-            setTimeout(() => {
-                title.style.transform = "";
-            }, 100);
-
-        }
-
-    }, 700);
-
-
-    // Pequeno efeito de movimento baseado no mouse
-
-    document.addEventListener("mousemove", (event) => {
-
-        const x =
-            (event.clientX / window.innerWidth - .5) * 10;
-
-        const y =
-            (event.clientY / window.innerHeight - .5) * 10;
-
-        document.querySelector(".hero h1").style.textShadow =
-            `${7+x}px ${7+y}px #ff00ff,
-             ${-7-x}px ${-7-y}px #00ffff`;
-
-    });
-
-
-    // Clique nos artistas
-
-    document.querySelectorAll(".artist").forEach(card => {
-
-        card.addEventListener("click", () => {
-
-            card.classList.toggle("active");
+            title.style.textShadow =
+                `${7 + x}px ${7 + y}px #ff00ff,
+                 ${-7 - x}px ${-7 - y}px #00ffff`;
 
         });
 
-    });
 
-</script>
+        /*
+         * EFEITO DE CLIQUE NOS ARTISTAS
+         */
+
+        document.querySelectorAll(".artist").forEach(card => {
+
+            card.addEventListener("click", () => {
+
+                card.classList.toggle("active");
+
+            });
+
+        });
+
+
+        /*
+         * EFEITO DE REVELAÇÃO AO ROLAR
+         */
+
+        const observer = new IntersectionObserver(
+
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.12
+            }
+
+        );
+
+
+        document
+            .querySelectorAll(
+                ".artist, .album, .impact, .timeline-item, .video"
+            )
+            .forEach(element => {
+
+                observer.observe(element);
+
+            });
+
+    </script>
 
 </body>
+
 </html>
